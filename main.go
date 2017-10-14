@@ -19,9 +19,9 @@ func main() {
 	mop := mopidy.New("localhost:6680")
 	panda := mopidy.Track{
 		Model:   "Track",
-		Name:    "panda",
-		Uri:     "spotify:track:275a9yzwGB6ncAW4SxY7q3",
-		Length:  248,
+		Name:    "First Love (from the film)",
+		Uri:     "spotify:track:30Zy2WFNjl4pUIkEocjxdN",
+		Length:  195,
 		TrackNo: 0,
 	}
 
@@ -73,12 +73,12 @@ func connectToDiscord(key string) error {
 		return err
 	}
 
-	sayShit(vc)
+	musicStream(vc)
 
 	return nil
 }
 
-func sayShit(vc *discordgo.VoiceConnection) {
+func musicStream(vc *discordgo.VoiceConnection) {
 	mopidyStream, err := net.ResolveUDPAddr("udp", "localhost:42069")
 	if err != nil {
 		log.Fatal(err)
@@ -90,7 +90,7 @@ func sayShit(vc *discordgo.VoiceConnection) {
 	}
 	defer connection.Close()
 
-	buffer := make([]byte, 1024)
+	buffer := make([]byte, 160)
 
 	for true {
 		bytesRead, err := connection.Read(buffer)
