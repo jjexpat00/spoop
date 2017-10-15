@@ -2,7 +2,7 @@
 spoop is the primitive form of what should eventually be a Discord bot designed to play music directly from Spotify.
 
 
-![Progress Diagram](/home/ubuntu/go/src/github.com/jjexpat00/spoop/spoopprog.png)
+![Progress Diagram](/../<xdboys>/spoopprog.png?raw=true "Process Diagram")
 
 
 Currently hosted in EC2.
