@@ -12,13 +12,11 @@ import (
 
 func main() {
 
-
 	// Here we read the Discord bot's token.
 	key, err := ioutil.ReadFile("key.conf")
 	if err != nil {
 		log.Fatal(err)
 	}
-
 
 	// Mopi is set as the device Mopidy runs through. We also
 	// create SpotifyTestSong, where the URI is the most important
@@ -31,7 +29,6 @@ func main() {
 		Length:  195,
 		TrackNo: 0,
 	}
-
 
 	// tracks forms the queue in which Track are loaded into, and
 	// in this case, SpotifyTestSong is loaded as the first Track.
@@ -58,12 +55,10 @@ func main() {
 		log.Fatal(err)
 	}
 
-
 	// This keeps main persistent?
 	for {
 	}
 }
-
 
 // For now, spoop automatically writes out a message and joins
 // the General channel (associated with Channel ID).
@@ -93,16 +88,14 @@ func connectToDiscord(key string) error {
 		return err
 	}
 
-
 	// Upon joining the channel, spoop begins playing the preset
 	// URI in Track. Not sure if it's proper, but I believe some
-	// if statements are warranted here. I'm also not sure if 
+	// if statements are warranted here. I'm also not sure if
 	// commands (eg. !pause, !stop, etc) should be added here.
 	musicStream(vc)
 
 	return nil
 }
-
 
 // Working on responses later...
 
@@ -120,7 +113,6 @@ func connectToDiscord(key string) error {
 //	return obj
 //}
 
-
 // Here is the core of the UDP sink. We feed musicStream into
 // the voice channel spoop joins. Please excuse the port number.
 func musicStream(vc *discordgo.VoiceConnection) {
@@ -135,7 +127,6 @@ func musicStream(vc *discordgo.VoiceConnection) {
 	}
 	defer connection.Close()
 
-
 	// Still not sure how to optimize buffer, will work on
 	// that later to see if the stuttering kink can be fixed.
 	buffer := make([]byte, 160)
@@ -146,10 +137,8 @@ func musicStream(vc *discordgo.VoiceConnection) {
 			log.Fatal(err)
 		}
 
-
 		// This just displays activity on the server.
 		log.Printf("Bytes read %v", bytesRead)
-
 
 		// Here we send the ingested buffer via OpusSend.
 		vc.OpusSend <- buffer[:bytesRead]
